@@ -1,0 +1,96 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  font-size: 0.28rem;
+  color: #333;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none !important;
+  cursor: pointer;
+  outline: none;
+  hide-focus: expression(this.hideFocus=true);
+}
+
+a,
+button,
+input,
+html {
+  outline: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+li {
+  list-style: none;
+  vertical-align: top;
+}
+
+img {
+  border: 0 none;
+  vertical-align: top;
+}
+
+input,
+textarea {
+  border: 0;
+  background: none;
+  outline: none;
+  &::-webkit-input-placeholder {
+    color: #ccc;
+  }
+}
+
+.container {
+  padding-top: 20px;
+}
+
+.u_transition_300 {
+  transition: 0.3s all ease-in-out;
+}
+
+.u_transition_500 {
+  transition: 0.5s all ease-in-out;
+}
+
+.g-clear {
+  zoom: 1;
+}
+
+.g-clear:after {
+  content: ' ';
+  clear: both;
+  display: block;
+}
+
+.g-overflow-hidden {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.g-c-center {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.g-r-center {
+  display: flex;
+  display: -webkit-flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
