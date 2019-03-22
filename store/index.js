@@ -18,7 +18,7 @@ let data = {
     { key: '', name: '首页', icon: 'iconfont icon-index' },
     {
       key: 'order',
-      name: '订单',
+      name: '订单中心',
       icon: 'el-icon-tickets',
       child: [
         { key: 'order1', name: '订单1' },
