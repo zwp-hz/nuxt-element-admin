@@ -3,7 +3,7 @@
 ## 特别注意
 
 如果要使用 cnpm 下载包请在 package.json 添加 core-js@2 版本
-cnpm i core-js@2 --save-dev
+`cnpm i core-js@2 --save-dev`
 
 ## 目录结构介绍
 
