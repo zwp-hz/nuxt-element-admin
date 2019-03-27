@@ -2,31 +2,31 @@
   <section id="login">
     <div class="main">
       <i class="iconfont icon-logo"></i>
-      <el-form :model="loginForm" ref="loginForm" class="demo-ruleForm">
+      <el-form ref="loginForm" :model="loginForm" class="demo-ruleForm">
         <el-form-item
-          prop="user"
           :rules="[
             { required: true, message: '账号不能为空'}
           ]"
+          prop="username"
         >
           <el-input
+            v-model="loginForm.username"
             prefix-icon="iconfont icon-user"
             type="text"
             placeholder="请输入账号"
-            v-model="loginForm.user"
             autocomplete="off"
           ></el-input>
         </el-form-item>
         <el-form-item
-          prop="password"
           :rules="[
             { required: true, message: '密码不能为空'}
           ]"
+          prop="password"
         >
           <el-input
+            v-model="loginForm.password"
             prefix-icon="iconfont icon-password"
             placeholder="请输入密码"
-            v-model="loginForm.password"
             show-password
             autocomplete="off"
           ></el-input>
@@ -40,12 +40,14 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   layout: 'else',
   data() {
     return {
       loginForm: {
-        user: '',
+        username: '',
         password: ''
       }
     }
@@ -56,6 +58,9 @@ export default {
   mounted() {},
 
   methods: {
+    ...mapMutations({
+      setStoreData: 'setStoreData'
+    }),
     /**
      * 表单提交
      * @param {String} formName - 表单名字
@@ -63,13 +68,33 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.$router.push({
-            path: '/'
+          localStorage.token = 2
+          this.$router.replace({
+            path: this.$route.query.from_path || '/'
           })
-          localStorage.token = 1
-        } else {
-          console.log('error submit!!')
-          return false
+
+          // 登录接口请求
+          // this.$axios.post('user/login', this.loginForm).then(res => {
+          //   if (res.code === 1) {
+          //     // 用户信息存储
+          //     localStorage.token = res.data.token
+          //     localStorage.user_info = JSON.stringify(res.data.user_info)
+          //     this.setStoreData({
+          //       user_info: res.data.user_info
+          //     })
+          //     this.$message({
+          //       message: '登录成功',
+          //       type: 'success'
+          //     })
+          //     this.$router.replace({
+          //       path: this.$route.query.from_path || '/'
+          //     })
+          //   } else {
+          //     this.$message.error({
+          //       message: '登录失败，请核定您的账号和密码'
+          //     })
+          //   }
+          // })
         }
       })
     }
@@ -94,8 +119,9 @@ export default {
     transform: translate(-50%, -50%);
     .icon-logo {
       display: block;
+      font-size: 40px;
+      margin: 0 auto;
       margin-bottom: 20px;
-      font-size: 50px;
       color: #000;
     }
     .el-input__prefix {

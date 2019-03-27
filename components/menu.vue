@@ -1,6 +1,6 @@
 <template>
   <div id="menu" :class="{fold: isCollapse}">
-    <img class="logo" src="~/assets/images/logo.png" alt>
+    <i class="iconfont icon-logo"></i>
     <el-menu
       :collapse="isCollapse"
       :default-active="url_path"
@@ -57,10 +57,12 @@ export default {
   height: 100%;
   padding-top: 10px;
   background-color: #545c64;
-  .logo {
+  .icon-logo {
     display: block;
-    width: 40px;
     margin: 0 auto;
+    font-size: 40px;
+    color: #fff;
+    text-align: center;
   }
   &.fold span {
     opacity: 0;

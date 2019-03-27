@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-container style="height: 100vh;">
-      <el-aside class="u_transition_300" :width="isCollapse ? '64px' : '200px' ">
+      <el-aside :width="isCollapse ? '64px' : '200px' " class="u_transition_300">
         <Menu/>
       </el-aside>
       <el-container>
@@ -33,20 +33,20 @@ export default {
     ...mapState(['isCollapse'])
   },
   watch: {
-    $route() {
-      this.pageInit()
+    $route(to, from) {
+      this.pageInit(from.path)
     }
   },
   created() {},
   mounted() {
-    this.pageInit()
-
     let u = navigator.userAgent
 
     this.setStoreData({
       key: 'isCollapse',
       value: /(iPhone|iPad|iPod|iOS|Android|Linux)/i.test(u)
     })
+
+    this.pageInit(this.$route.path)
   },
   methods: {
     ...mapMutations({
@@ -55,11 +55,22 @@ export default {
     }),
     /**
      * 页面初始化
+     * @param {String} path - 路由地址
      */
-    pageInit() {
-      if (!localStorage.token) {
+    pageInit(path) {
+      let { token, user_info } = localStorage
+
+      if (!token) {
         this.$router.replace({
-          path: '/login'
+          path: '/login',
+          query: {
+            from_path: path
+          }
+        })
+      } else if (user_info) {
+        this.setStoreData({
+          key: 'user_info',
+          value: JSON.parse(user_info)
         })
       }
 
