@@ -47,9 +47,7 @@ import { mapState } from 'vuex'
 export default {
   computed: {
     ...mapState(['menu_list', 'isCollapse', 'url_path'])
-  },
-  created() {},
-  methods: {}
+  }
 }
 </script>
 <style lang='scss' scoped>

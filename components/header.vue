@@ -36,9 +36,11 @@ export default {
      * 退出登陆
      */
     logout() {
-      localStorage.token = ''
-      this.$router.push({
-        path: '/login'
+      this.$router.replace({
+        path: '/login',
+        query: {
+          from_path: this.$route.fullPath
+        }
       })
     }
   }

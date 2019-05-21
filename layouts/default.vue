@@ -24,6 +24,16 @@ import Header from '~/components/header'
 import Breadcrumb from '~/components/breadcrumb'
 
 export default {
+  head: {
+    script: [
+      {
+        src: '/g2.min.js'
+      },
+      {
+        src: '/data-set.min.js'
+      }
+    ]
+  },
   components: {
     Menu,
     Header,
@@ -34,7 +44,7 @@ export default {
   },
   watch: {
     $route(to, from) {
-      this.pageInit(from.path)
+      this.pageInit()
     }
   },
   created() {},
@@ -46,7 +56,7 @@ export default {
       value: /(iPhone|iPad|iPod|iOS|Android|Linux)/i.test(u)
     })
 
-    this.pageInit(this.$route.path)
+    this.pageInit()
   },
   methods: {
     ...mapMutations({
@@ -55,26 +65,26 @@ export default {
     }),
     /**
      * 页面初始化
-     * @param {String} path - 路由地址
      */
-    pageInit(path) {
-      let { token, user_info } = localStorage
+    pageInit() {
+      let { token, user_info } = localStorage,
+        { path, fullPath } = this.$route
 
-      if (!token) {
+      if (path !== '/login' && !token) {
         this.$router.replace({
           path: '/login',
           query: {
-            from_path: path
+            from_path: fullPath
           }
         })
-      } else if (user_info) {
+      } else if (user_info && !this.user_info.realName) {
         this.setStoreData({
           key: 'user_info',
           value: JSON.parse(user_info)
         })
       }
 
-      this.setBreadcrumb(this.$route.path)
+      this.setBreadcrumb(path.replace(/\/$/, ''))
     }
   }
 }

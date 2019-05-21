@@ -52,11 +52,9 @@ export default {
       }
     }
   },
-
-  computed: {},
-
-  mounted() {},
-
+  mounted() {
+    localStorage.token = ''
+  },
   methods: {
     ...mapMutations({
       setStoreData: 'setStoreData'

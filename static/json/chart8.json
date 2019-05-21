@@ -1,0 +1,23 @@
+{
+  "code": 0,
+  "data": {
+    "sumPrice": 100,
+    "data": [{
+      "num": 10,
+      "name": "测试1"
+    },{
+      "num": 5,
+      "name": "测试2"
+    },{
+      "num": 40,
+      "name": "测试3"
+    },{
+      "num": 25,
+      "name": "测试4"
+    },{
+      "num": 20,
+      "name": "测试5"
+    }]
+  },
+  "message": "success"
+}

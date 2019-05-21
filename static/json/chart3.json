@@ -1,0 +1,18 @@
+{
+  "code": 0,
+  "data": [
+    {
+      "time": 150,
+      "name": "全部"
+    },
+    {
+      "time": 100,
+      "name": "渠道1"
+    },
+    {
+      "time": 200,
+      "name": "渠道2"
+    }
+  ],
+  "message": "success"
+}

@@ -38,7 +38,7 @@ const mutations = {
     })
 
     state.breadcrumb_list = array.map(item => item.name)
-    state.url_path = path
+    state.url_path = path || '/';
   }
 }
 
